@@ -2,7 +2,7 @@
 agor-dot microservices repository
 
  Запуск больше одного контейнера nginx с `--network host` не возможен
-    из-за ошибки уже занятости пота,
+    из-за ошибки уже занятости порта,
     в отличие от запуска nginx с `--network none`, когда каждый раз создаётся отдельный network namespace.
 
   - Сервисы reddit_microservices запущены через `docker run` с использование двух сетей _front_net_ и _back_net_,
