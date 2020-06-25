@@ -2,6 +2,8 @@ stages:
   - build
   - test
   - review
+  - stage
+  - production
 
 build_job:
   stage: build
@@ -30,16 +32,16 @@ staging:
   stage: stage
   when: manual
   script:
-    - echo'Deploy'
+    - echo 'Deploy'
   environment:
     name: stage
     url: https://beta.example.com
 
 production:
-   stage: production
-   when: manual
-   script:
-     - echo'Deploy'
+  stage: production
+  when: manual
+  script:
+    - echo 'Deploy'
   environment:
     name: production
     url: https://example.com
