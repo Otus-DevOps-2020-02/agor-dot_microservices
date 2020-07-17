@@ -17,6 +17,7 @@ services:
       - "9200:9200"
     environment:
       - ZIPKIN_ENABLED=${ZIPKIN_ENABLED}
+      - discovery.type=single-node
 
   kibana:
     image: kibana:7.4.0
@@ -32,3 +33,7 @@ services:
     networks:
       - front_net
       - back_net
+
+networks:
+  front_net:
+  back_net:
