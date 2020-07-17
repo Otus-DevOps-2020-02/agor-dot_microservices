@@ -8,6 +8,9 @@ services:
       - "24224:24224/udp"
     environment:
       - ZIPKIN_ENABLED=${ZIPKIN_ENABLED}
+    networks:
+      - front_net
+      - back_net
 
   elasticsearch:
     image: elasticsearch:7.4.0
@@ -16,8 +19,13 @@ services:
     ports:
       - "9200:9200"
     environment:
-      - ZIPKIN_ENABLED=${ZIPKIN_ENABLED}
+      - ELASTIC_CLUSTER=false
+      - CLUSTER_NODE_MASTER=true
+      - CLUSTER_MASTER_NODE_NAME=es01
       - discovery.type=single-node
+    networks:
+      - front_net
+      - back_net
 
   kibana:
     image: kibana:7.4.0
@@ -25,6 +33,9 @@ services:
       - "5601:5601"
     environment:
       - ZIPKIN_ENABLED=${ZIPKIN_ENABLED}
+    networks:
+      - front_net
+      - back_net
 
   zipkin:
     image: openzipkin/zipkin
